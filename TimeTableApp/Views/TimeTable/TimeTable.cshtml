@@ -1,0 +1,25 @@
+﻿@model List<SubjectHours>
+
+<h2>Generated Time-Table</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            @for (int i = 1; i <= Model.Count; i++)
+            {
+                <th>Day @i</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @for (int row = 0; row < Model.Count; row++)
+        {
+            <tr>
+                @for (int col = 0; col < Model[row].Hours; col++)
+                {
+                    <td>@Model[row].SubjectName</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

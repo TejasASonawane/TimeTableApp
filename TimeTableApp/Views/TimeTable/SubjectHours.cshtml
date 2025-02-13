@@ -1,0 +1,22 @@
+﻿@model SubjectHoursInputModel
+
+<h2>Enter Hours for Each Subject</h2>
+
+<form asp-action="GenerateTimeTable" method="post">
+    @for (int i = 0; i < Model.Subjects.Count; i++)
+    {
+        <div>
+            <label>Subject Name:</label>
+            <input asp-for="Subjects[i].SubjectName" />
+            <span asp-validation-for="Subjects[i].SubjectName"></span>
+
+            <label>Hours:</label>
+            <input asp-for="Subjects[i].Hours" type="number" />
+            <span asp-validation-for="Subjects[i].Hours"></span>
+        </div>
+    }
+
+    <input type="hidden" asp-for="TotalHoursForWeek" value="@ViewBag.TotalHoursForWeek" />
+
+    <button type="submit">Generate TimeTable</button>
+</form>

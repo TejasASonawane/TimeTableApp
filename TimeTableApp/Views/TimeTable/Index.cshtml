@@ -1,0 +1,54 @@
+﻿@model TimeTableModel
+
+<h2>Generate Time-Table</h2>
+
+<form asp-action="GenerateSubjectHours" method="post">
+    <div>
+        <label>No of Working Days:</label>
+        <input asp-for="NoOfWorkingDays" type="number" />
+        <span asp-validation-for="NoOfWorkingDays"></span>
+    </div>
+
+    <div>
+        <label>No of Subjects Per Day:</label>
+        <input asp-for="NoOfSubjectsPerDay" type="number" />
+        <span asp-validation-for="NoOfSubjectsPerDay"></span>
+    </div>
+
+    <div>
+        <label>Total Subjects:</label>
+        <input asp-for="TotalSubjects" type="number" />
+        <span asp-validation-for="TotalSubjects"></span>
+    </div>
+
+    <div>
+        <label>Total Hours for Week:</label>
+        <input type="text" value="@Model.TotalHoursForWeek" readonly />
+    </div>
+
+    <button type="submit">Next</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        function calculateTotalHours() {
+            let workingDays = parseInt($("#NoOfWorkingDays").val()) || 0;
+            let subjectsPerDay = parseInt($("#NoOfSubjectsPerDay").val()) || 0;
+
+            if (workingDays >= 1 && workingDays <= 7 && subjectsPerDay > 0 && subjectsPerDay < 9) {
+                let totalHours = workingDays * subjectsPerDay;
+                $("#TotalHoursForWeek").val(totalHours); // Auto update the total hours field
+            } else {
+                $("#TotalHoursForWeek").val(""); // Clear value if inputs are invalid
+            }
+        }
+
+        // Call function on input change
+        $("#NoOfWorkingDays, #NoOfSubjectsPerDay").on("input", function () {
+            calculateTotalHours();
+        });
+    });
+</script>
+
