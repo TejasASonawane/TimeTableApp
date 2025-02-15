@@ -5,62 +5,55 @@ namespace TimeTableApp.Controllers
 {
     public class TimeTableController : Controller
     {
-        [HttpGet]
         public IActionResult Index()
         {
             return View(new TimeTableModel());
         }
 
         [HttpPost]
-        public IActionResult GenerateSubjectHours(TimeTableModel model)
+        public IActionResult SubmitInput(TimeTableModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View("Index", model);
+
+            TempData["NoOfWorkingDays"] = model.NoOfWorkingDays;
+            TempData["NoOfSubjectsPerDay"] = model.NoOfSubjectsPerDay;
+            TempData["TotalSubjects"] = model.TotalSubjects;
+            TempData["TotalHours"] = model.TotalHours;
+
+            return RedirectToAction("AddSubjectHours");
+        }
+        public IActionResult AddSubjectHours()
+        {
+            var model = new TimeTableModel
+            {
+                TotalSubjects = (int)TempData["TotalSubjects"],
+                NoOfWorkingDays = (int)TempData["NoOfWorkingDays"],
+                NoOfSubjectsPerDay = (int)TempData["NoOfSubjectsPerDay"],
+                SubjectHoursList = new List<SubjectHours>()
+            };
+
+            for (int i = 0; i < model.TotalSubjects; i++)
+            {
+                model.SubjectHoursList.Add(new SubjectHours());
             }
 
-            TempData["TotalHoursForWeek"] = model.TotalHoursForWeek;
-            TempData["TotalSubjects"] = model.TotalSubjects;
-
-            return RedirectToAction("SubjectHours");
-        }
-
-        [HttpGet]
-        public IActionResult SubjectHours()
-        {
-            int totalSubjects = TempData["TotalSubjects"] != null ? (int)TempData["TotalSubjects"] : 0;
-            int totalHoursForWeek = TempData["TotalHoursForWeek"] != null ? (int)TempData["TotalHoursForWeek"] : 0;
-
-            if (totalSubjects == 0 || totalHoursForWeek == 0)
-                return RedirectToAction("Index");
-
-            ViewBag.TotalHoursForWeek = totalHoursForWeek;
-
-            return View(new SubjectHoursInputModel { Subjects = new List<SubjectHours>(totalSubjects) });
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult GenerateTimeTable(SubjectHoursInputModel model)
+        public IActionResult GenerateTimeTable(TimeTableModel model)
         {
-            int totalHoursForWeek = model.Subjects.Sum(s => s.Hours);
+            int enteredTotalHours = model.SubjectHoursList.Sum(s => s.Hours);
+            int requiredTotalHours = model.NoOfWorkingDays * model.NoOfSubjectsPerDay;
 
-            if (totalHoursForWeek != model.TotalHoursForWeek)
+            if (enteredTotalHours != requiredTotalHours)
             {
-                ModelState.AddModelError("", $"Total hours must be exactly {model.TotalHoursForWeek}.");
-                return View("SubjectHours", model);
+                ModelState.AddModelError("", "Total hours must be equal to Total Hours for Week.");
+                return View("AddSubjectHours", model);
             }
 
-            TempData["TimeTableData"] = model.Subjects;
-            return RedirectToAction("TimeTable");
-        }
-
-        [HttpGet]
-        public IActionResult TimeTable()
-        {
-            var subjects = TempData["TimeTableData"] as List<SubjectHours>;
-            if (subjects == null) return RedirectToAction("Index");
-
-            return View(subjects);
+            return View("TimeTable", model);
         }
     }
 }

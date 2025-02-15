@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "E:\\Project\\TimeTableApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5A053ABE-FC51-4811-BC32-864D576511AF}|TimeTableApp\\TimeTableApp.csproj|e:\\project\\timetableapp\\timetableapp\\controllers\\timetablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5A053ABE-FC51-4811-BC32-864D576511AF}|TimeTableApp\\TimeTableApp.csproj|solutionrelative:timetableapp\\controllers\\timetablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5A053ABE-FC51-4811-BC32-864D576511AF}|TimeTableApp\\TimeTableApp.csproj|e:\\project\\timetableapp\\timetableapp\\views\\timetable\\addsubjecthours.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5A053ABE-FC51-4811-BC32-864D576511AF}|TimeTableApp\\TimeTableApp.csproj|solutionrelative:timetableapp\\views\\timetable\\addsubjecthours.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A053ABE-FC51-4811-BC32-864D576511AF}|TimeTableApp\\TimeTableApp.csproj|e:\\project\\timetableapp\\timetableapp\\controllers\\timetablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A053ABE-FC51-4811-BC32-864D576511AF}|TimeTableApp\\TimeTableApp.csproj|solutionrelative:timetableapp\\controllers\\timetablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5A053ABE-FC51-4811-BC32-864D576511AF}|TimeTableApp\\TimeTableApp.csproj|e:\\project\\timetableapp\\timetableapp\\models\\timetablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 119,
+          "SelectedChildIndex": 115,
           "Children": [
             {
               "$type": "Bookmark",
@@ -498,7 +498,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "AddSubjectHours.cshtml",
               "DocumentMoniker": "E:\\Project\\TimeTableApp\\TimeTableApp\\Views\\TimeTable\\AddSubjectHours.cshtml",
               "RelativeDocumentMoniker": "TimeTableApp\\Views\\TimeTable\\AddSubjectHours.cshtml",
@@ -508,6 +508,10 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-02-15T08:07:00.878Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -549,7 +553,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "TimeTableController.cs",
               "DocumentMoniker": "E:\\Project\\TimeTableApp\\TimeTableApp\\Controllers\\TimeTableController.cs",
               "RelativeDocumentMoniker": "TimeTableApp\\Controllers\\TimeTableController.cs",
@@ -559,10 +563,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-13T17:58:05.318Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",

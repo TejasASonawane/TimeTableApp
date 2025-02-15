@@ -1,0 +1,16 @@
+﻿@model TimeTableApp.Models.TimeTableModel
+
+<h2>Enter Subject Hours</h2>
+
+<form asp-action="GenerateTimeTable" method="post">
+    @for (int i = 0; i < Model.TotalSubjects; i++)
+    {
+        <label>Subject:</label>
+        <input type="text" name="SubjectHoursList[@i].SubjectName" required />
+
+        <label>Hours:</label>
+        <input type="number" name="SubjectHoursList[@i].Hours" required min="1" />
+    }
+
+    <button type="submit">Generate TimeTable</button>
+</form>

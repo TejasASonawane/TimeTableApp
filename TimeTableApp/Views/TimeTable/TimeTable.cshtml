@@ -1,23 +1,23 @@
-﻿@model List<SubjectHours>
+﻿@model TimeTableApp.Models.TimeTableModel
 
-<h2>Generated Time-Table</h2>
+<h2>Generated Time Table</h2>
 
 <table border="1">
     <thead>
         <tr>
-            @for (int i = 1; i <= Model.Count; i++)
+            @for (int i = 1; i <= Model.NoOfWorkingDays; i++)
             {
                 <th>Day @i</th>
             }
         </tr>
     </thead>
     <tbody>
-        @for (int row = 0; row < Model.Count; row++)
+        @for (int i = 0; i < Model.NoOfSubjectsPerDay; i++)
         {
             <tr>
-                @for (int col = 0; col < Model[row].Hours; col++)
+                @for (int j = 0; j < Model.NoOfWorkingDays; j++)
                 {
-                    <td>@Model[row].SubjectName</td>
+                    <td>@Model.SubjectHoursList[i % Model.SubjectHoursList.Count].SubjectName</td>
                 }
             </tr>
         }

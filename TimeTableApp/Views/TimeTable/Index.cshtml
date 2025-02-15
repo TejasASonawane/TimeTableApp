@@ -1,54 +1,43 @@
-﻿@model TimeTableModel
+﻿@model TimeTableApp.Models.TimeTableModel
 
-<h2>Generate Time-Table</h2>
+@{
+    ViewData["Title"] = "Time Table Generator";
+}
 
-<form asp-action="GenerateSubjectHours" method="post">
-    <div>
-        <label>No of Working Days:</label>
-        <input asp-for="NoOfWorkingDays" type="number" />
-        <span asp-validation-for="NoOfWorkingDays"></span>
-    </div>
+<h2>Time Table Generator</h2>
 
-    <div>
-        <label>No of Subjects Per Day:</label>
-        <input asp-for="NoOfSubjectsPerDay" type="number" />
-        <span asp-validation-for="NoOfSubjectsPerDay"></span>
-    </div>
+<form asp-action="SubmitInput" method="post">
+    <label>No of Working Days:</label>
+    <input type="number" id="NoOfWorkingDays" asp-for="NoOfWorkingDays" min="1" max="7" required />
+    <span asp-validation-for="NoOfWorkingDays" class="text-danger"></span>
 
-    <div>
-        <label>Total Subjects:</label>
-        <input asp-for="TotalSubjects" type="number" />
-        <span asp-validation-for="TotalSubjects"></span>
-    </div>
+    <label>No of Subjects Per Day:</label>
+    <input type="number" id="NoOfSubjectsPerDay" asp-for="NoOfSubjectsPerDay" min="1" max="8" required />
+    <span asp-validation-for="NoOfSubjectsPerDay" class="text-danger"></span>
 
-    <div>
-        <label>Total Hours for Week:</label>
-        <input type="text" value="@Model.TotalHoursForWeek" readonly />
-    </div>
+    <label>Total Subjects:</label>
+    <input type="number" id="TotalSubjects" asp-for="TotalSubjects" min="1" required />
+    <span asp-validation-for="TotalSubjects" class="text-danger"></span>
+
+    <label>Total Hours for Week:</label>
+    <input type="text" id="TotalHours" asp-for="TotalHours" readonly />
 
     <button type="submit">Next</button>
 </form>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#NoOfWorkingDays, #NoOfSubjectsPerDay").on("input", function () {
+                let workingDays = parseInt($("#NoOfWorkingDays").val()) || 0;
+                let subjectsPerDay = parseInt($("#NoOfSubjectsPerDay").val()) || 0;
 
-<script>
-    $(document).ready(function () {
-        function calculateTotalHours() {
-            let workingDays = parseInt($("#NoOfWorkingDays").val()) || 0;
-            let subjectsPerDay = parseInt($("#NoOfSubjectsPerDay").val()) || 0;
-
-            if (workingDays >= 1 && workingDays <= 7 && subjectsPerDay > 0 && subjectsPerDay < 9) {
-                let totalHours = workingDays * subjectsPerDay;
-                $("#TotalHoursForWeek").val(totalHours); // Auto update the total hours field
-            } else {
-                $("#TotalHoursForWeek").val(""); // Clear value if inputs are invalid
-            }
-        }
-
-        // Call function on input change
-        $("#NoOfWorkingDays, #NoOfSubjectsPerDay").on("input", function () {
-            calculateTotalHours();
+                if (workingDays > 0 && subjectsPerDay > 0) {
+                    $("#TotalHours").val(workingDays * subjectsPerDay);
+                } else {
+                    $("#TotalHours").val("");
+                }
+            });
         });
-    });
-</script>
-
+    </script>
+}

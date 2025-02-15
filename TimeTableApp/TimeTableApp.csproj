@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Controllers\TimeTableController.cs~RF16032bb2.TMP" />
+    <None Remove="Views\TimeTable\2xkgddda.ip1~" />
+  </ItemGroup>
+
 </Project>
